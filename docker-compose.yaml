@@ -3,12 +3,13 @@ services:
     calibre-web:
         image: linuxserver/calibre-web
         container_name: calibre-web
-        restart: always
+        restart: unless-stopped
         ports:
             - 8083:8083
         volumes:
             - ./books:/books
+            - ./config:/config
         environment:
-            - PGID=65539
-            - PUID=1029
-
+            - PGID=1000
+            - PUID=1000
+            - TZ=Asia/Shanghai
